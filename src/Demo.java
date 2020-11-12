@@ -97,11 +97,7 @@ public class Demo {
                 int x = r.x(), y = r.y(), w = r.width(), h = r.height();
                 rectangle(grabbedImage, new Point(x, y), new Point(x + w, y + h), Scalar.RED, 1, CV_AA, 0);
 
-                // To access or pass as argument the elements of a native array, call position() before.
-                hatPoints.position(0).x(x - w / 10     ).y(y - h / 10);
-                hatPoints.position(1).x(x + w * 11 / 10).y(y - h / 10);
-                hatPoints.position(2).x(x + w / 2      ).y(y - h / 2 );
-                fillConvexPoly(grabbedImage, hatPoints.position(0), 3, Scalar.GREEN, CV_AA, 0);
+
             }
 
             // Let's find some contours! but first some thresholding...
