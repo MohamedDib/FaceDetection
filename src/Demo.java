@@ -56,7 +56,6 @@ public class Demo {
         // by the garbage collector, but may still be explicitly released by calling deallocate().
         // You shall NOT call cvReleaseImage(), cvReleaseMemStorage(), etc. on objects allocated this way.
         Mat grayImage = new Mat(height, width, CV_8UC1);
-        Mat rotatedImage = grabbedImage.clone();
 
         // The OpenCVFrameRecorder class simply uses the VideoWriter of opencv_videoio,
         // but FFmpegFrameRecorder also exists as a more versatile alternative.
@@ -119,11 +118,10 @@ public class Demo {
                 drawContours(grabbedImage, new MatVector(points), -1, Scalar.BLUE);
             }
 
-            warpPerspective(grabbedImage, rotatedImage, randomR, rotatedImage.size());
 
-            Frame rotatedFrame = converter.convert(rotatedImage);
-            frame.showImage(rotatedFrame);
-            recorder.record(rotatedFrame);
+            Frame frame1 = converter.convert(grabbedImage);
+            frame.showImage(frame1);
+            recorder.record(frame1);
         }
         frame.dispose();
         recorder.stop();
