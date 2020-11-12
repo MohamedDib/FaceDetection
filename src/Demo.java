@@ -8,8 +8,7 @@ import java.io.File;
 import java.net.URL;
 
 import static org.bytedeco.opencv.global.opencv_calib3d.Rodrigues;
-import static org.bytedeco.opencv.global.opencv_core.CV_64FC1;
-import static org.bytedeco.opencv.global.opencv_core.CV_8UC1;
+import static org.bytedeco.opencv.global.opencv_core.*;
 import static org.bytedeco.opencv.global.opencv_imgproc.*;
 
 public class Demo {
@@ -97,6 +96,9 @@ public class Demo {
                 int x = r.x(), y = r.y(), w = r.width(), h = r.height();
                 rectangle(grabbedImage, new Point(x, y), new Point(x + w, y + h), Scalar.RED, 1, CV_AA, 0);
 
+                Point center = new Point(cvRound(r.x() + r.width()*0.5),cvRound(r.y() + r.height()*0.6));
+                int radius = 0;
+                circle(grabbedImage, center, radius, Scalar.RED, ((r.width()+r.height())/8), 8, 0);
 
             }
 
