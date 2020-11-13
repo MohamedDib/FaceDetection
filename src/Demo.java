@@ -3,6 +3,7 @@ import org.bytedeco.javacpp.indexer.DoubleIndexer;
 import org.bytedeco.javacv.*;
 import org.bytedeco.opencv.opencv_core.*;
 import org.bytedeco.opencv.opencv_objdetect.CascadeClassifier;
+import org.opencv.imgproc.Imgproc;
 
 import java.io.File;
 import java.net.URL;
@@ -98,7 +99,22 @@ public class Demo {
 
                 Point center = new Point(cvRound(r.x() + r.width()*0.5),cvRound(r.y() + r.height()*0.6));
                 int radius = 0;
+
+                //shadow red nose
+                Scalar color = new Scalar( 0, 0, 196, 1);
+                circle(grabbedImage, center, radius, color, ((r.width()+r.height())/7), 8, 0);
+
+                //red nose
                 circle(grabbedImage, center, radius, Scalar.RED, ((r.width()+r.height())/8), 8, 0);
+
+                //shadow reflection red nose
+                Scalar color2 = new Scalar( 190, 190, 255, 1);
+                Point center2 = new Point(cvRound(r.x() + r.width()*0.55),cvRound(r.y() + r.height()*0.59));
+                circle(grabbedImage, center2, radius, color2, ((r.width()+r.height())/24), 8, 0);
+
+                //reflection red nose
+                Scalar color3 = new Scalar( 225, 225, 255, 1);
+                circle(grabbedImage, center2, radius, color2, ((r.width()+r.height())/25), 8, 0);
 
             }
 
